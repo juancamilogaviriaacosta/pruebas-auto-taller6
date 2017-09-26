@@ -21,7 +21,7 @@ Scenario Outline: Login succes
     When I open the login screen
     And I fill with <email> and <password>
     And I try to login
-    Then I expect to see exit button
+    Then Must exists exit button
 
     Examples:
       | email                        | password          |

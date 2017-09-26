@@ -53,7 +53,7 @@ defineSupportCode(({Given, When, Then}) => {
     expect(alertText).to.include(error);
   });
 
-  Then('I expect to see exit button',  => {
-    browser.click('#cuenta')
+  Then('Must exists exit button', () => {
+    browser.waitForVisible('#cuenta', 5000);
   });
 });
