@@ -1,3 +1,5 @@
+var webdriverio = require('webdriverio');
+//var waitUntil = require('wait-until');
 var {defineSupportCode} = require('cucumber');
 var {expect} = require('chai');
 
@@ -91,4 +93,53 @@ defineSupportCode(({Given, When, Then}) => {
     expect(alerta).contain(error);
   });
 
+  When('Random sign up form', () => {
+        var cajaSignUp = browser.element('.cajaSignUp');
+        var nombre = cajaSignUp.element('input[name="nombre"]');
+        var apellido = cajaSignUp.element('input[name="apellido"]');
+        var correo = cajaSignUp.element('input[name="correo"]');
+        var passwordTmp = cajaSignUp.element('input[name="password"]');
+        var terminosCondiciones = cajaSignUp.element('input[name="acepta"]');
+
+        nombre.click();
+        nombre.keys(guid());
+
+        browser.pause(3000);
+
+        apellido.click();
+        apellido.keys(guid() + guid());
+
+        browser.pause(3000);
+
+        correo.click();
+        correo.keys(guid() + guid() + '@' + guid() + '.com');    
+
+        browser.pause(3000);
+
+        passwordTmp.click();
+        passwordTmp.keys(guid() + guid());
+
+        browser.pause(3000);
+
+        terminosCondiciones.click();
+
+        browser.pause(3000);
+  });
+
+  Then('Succes info must be {string}', info => {
+    browser.waitForVisible('.sweet-alert', 5000);
+    var alerta = browser.getText('.sweet-alert');
+    expect(alerta).contain(info);
+  });
+
 });
+
+
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4();
+}

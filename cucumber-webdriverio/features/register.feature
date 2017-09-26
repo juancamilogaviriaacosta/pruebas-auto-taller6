@@ -32,10 +32,10 @@ Scenario Outline: Register succes
 
   Given I go to losestudiantes home screen
     When I open the login screen
-    And Sign up form with <name> <lastname> <email> and <password>
+    And Random sign up form
     And I try to sign up
-    Then Sign up error must be <error>
+    Then Succes info must be <info>
 
     Examples:
-      | name  | lastname | email                        | password          | error                                |
-      | cosme | fulanito | cosmefulanitog88@gmail.com   | cosmefulanitog88  | Ocurrió un error activando tu cuenta |
+      | name              |
+      | Registro exitoso! |
