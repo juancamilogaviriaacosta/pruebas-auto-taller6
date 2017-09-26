@@ -5,7 +5,7 @@ Scenario Outline: Register failed with wrong inputs
 
   Given I go to losestudiantes home screen
     When I open the login screen
-    And I fill sign up form with <name>, <lastname>, <email> and <password>
+    And Sign up form with <name> <lastname> <email> and <password>
     And I try to sign up
     Then I expect to see <error>
 

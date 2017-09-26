@@ -57,12 +57,12 @@ defineSupportCode(({Given, When, Then}) => {
     browser.waitForVisible('#cuenta', 5000);
   });
 
-  When(^/I fill sign up form with (.*), (.*), (.*) and (.*)/, (name, lastname, email, password) => {
+  When(/^Sign up form with (.*) (.*) (.*) and (.*)$/ , (name, lastname, email, password) => {
         var cajaSignUp = browser.element('.cajaSignUp');
         var nombre = cajaSignUp.element('input[name="nombre"]');
         var apellido = cajaSignUp.element('input[name="apellido"]');
         var correo = cajaSignUp.element('input[name="correo"]');
-        var password = cajaSignUp.element('input[name="password"]');
+        var passwordTmp = cajaSignUp.element('input[name="password"]');
 
         nombre.click();
         nombre.keys(name);
@@ -73,16 +73,13 @@ defineSupportCode(({Given, When, Then}) => {
         correo.click();
         correo.keys(email);
 
-        password.click();
-        password.keys(password);
-
-        browser.waitForVisible('button=Registrarse', 5000);
-        browser.click('button=Registrarse');
+        passwordTmp.click();
+        passwordTmp.keys(password);
   });
 
   When('I try to sign up', () => {
-    var cajaLogIn = browser.element('.cajaLogIn');
-    cajaLogIn.element('button=Registrarse').click()
+    var cajaSignUp = browser.element('.cajaSignUp');
+    cajaSignUp.element('button=Registrarse').click()
   });
 
   Then('Sign up error must be {string}', error => {
