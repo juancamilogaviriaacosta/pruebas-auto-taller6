@@ -63,6 +63,7 @@ defineSupportCode(({Given, When, Then}) => {
         var apellido = cajaSignUp.element('input[name="apellido"]');
         var correo = cajaSignUp.element('input[name="correo"]');
         var passwordTmp = cajaSignUp.element('input[name="password"]');
+        var terminosCondiciones = cajaSignUp.element('input[name="acepta"]');
 
         nombre.click();
         nombre.keys(name);
@@ -75,17 +76,19 @@ defineSupportCode(({Given, When, Then}) => {
 
         passwordTmp.click();
         passwordTmp.keys(password);
+
+        terminosCondiciones.click();
   });
 
   When('I try to sign up', () => {
     var cajaSignUp = browser.element('.cajaSignUp');
-    cajaSignUp.element('button=Registrarse').click()
+    cajaSignUp.element('button=Registrarse').click();
   });
 
   Then('Sign up error must be {string}', error => {
     browser.waitForVisible('.sweet-alert', 5000);
     var alerta = browser.getText('.sweet-alert');
-    expect(alerta).toContain('Ocurrió un error activando tu cuenta');
+    expect(alerta).contain(error);
   });
 
 });

@@ -11,7 +11,7 @@ Scenario Outline: Register failed with wrong inputs
 
     Examples:
       | name      | lastname  | email         | password  | error                    |
-      |           |           |               |           | Ingresa un correo valido |
+      |           |           |               |           | Ingresa tu correo        |
       | misogmail | misogmail | misogmail.com | 1234      | Ingresa un correo valido |
 
 
@@ -19,9 +19,9 @@ Scenario Outline: Register failed with registered email
 
   Given I go to losestudiantes home screen
     When I open the login screen
-    And I fill sign up form with <name>, <lastname>, <email> and <password>
+    And Sign up form with <name> <lastname> <email> and <password>
     And I try to sign up
-    Then I expect to see <error>
+    Then Sign up error must be <error>
 
     Examples:
       | name  | lastname | email                        | password          | error                                |
@@ -32,9 +32,9 @@ Scenario Outline: Register succes
 
   Given I go to losestudiantes home screen
     When I open the login screen
-    And I fill sign up form with <name>, <lastname>, <email> and <password>
+    And Sign up form with <name> <lastname> <email> and <password>
     And I try to sign up
-    Then Must exists exit button
+    Then Sign up error must be <error>
 
     Examples:
       | name  | lastname | email                        | password          | error                                |
