@@ -56,4 +56,39 @@ defineSupportCode(({Given, When, Then}) => {
   Then('Must exists exit button', () => {
     browser.waitForVisible('#cuenta', 5000);
   });
+
+  When(^/I fill sign up form with (.*), (.*), (.*) and (.*)/, (name, lastname, email, password) => {
+        var cajaSignUp = browser.element('.cajaSignUp');
+        var nombre = cajaSignUp.element('input[name="nombre"]');
+        var apellido = cajaSignUp.element('input[name="apellido"]');
+        var correo = cajaSignUp.element('input[name="correo"]');
+        var password = cajaSignUp.element('input[name="password"]');
+
+        nombre.click();
+        nombre.keys(name);
+
+        apellido.click();
+        apellido.keys(lastname);
+
+        correo.click();
+        correo.keys(email);
+
+        password.click();
+        password.keys(password);
+
+        browser.waitForVisible('button=Registrarse', 5000);
+        browser.click('button=Registrarse');
+  });
+
+  When('I try to sign up', () => {
+    var cajaLogIn = browser.element('.cajaLogIn');
+    cajaLogIn.element('button=Registrarse').click()
+  });
+
+  Then('Sign up error must be {string}', error => {
+    browser.waitForVisible('.sweet-alert', 5000);
+    var alerta = browser.getText('.sweet-alert');
+    expect(alerta).toContain('Ocurrió un error activando tu cuenta');
+  });
+
 });
