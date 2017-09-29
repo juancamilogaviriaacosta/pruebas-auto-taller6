@@ -16,6 +16,30 @@ Feature: Calcular rutas
     And I wait for 2 seconds
     Then I should see "Recorrido"
 
+  Scenario: Como usuario quiero acceder a la seccion de rutas y ver las rutas de los buses complementarios
+    Given I press "Rutas de buses"
+    When I wait for 2 seconds
+    And I press "COMPLEMENTARIO"
+    And I press "2-6"
+    And I wait for 2 seconds
+    Then I should see "Recorrido"
+
+  Scenario: Como usuario quiero acceder a la seccion de rutas y las rutas de los buses especiales
+    Given I press "Rutas de buses"
+    When I wait for 2 seconds
+    And I press "ESPECIAL"
+    And I press "6-18"
+    And I wait for 2 seconds
+    Then I should see "Recorrido"
+
+  Scenario: Como usuario quiero acceder a la seccion de rutas y las rutas de los alimentadores
+    Given I press "Rutas de buses"
+    When I wait for 2 seconds
+    And I press "ALIMENTADOR"
+    And I press "1-1"
+    And I wait for 2 seconds
+    Then I should see "Recorrido"
+
   Scenario: Como usuario quiero acceder a la seccion de rutas y filtrar las rutas que estan en operacion
     Given I press "Rutas de buses"
     When I wait for 2 seconds
