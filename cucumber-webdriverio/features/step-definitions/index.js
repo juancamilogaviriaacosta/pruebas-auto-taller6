@@ -104,32 +104,34 @@ defineSupportCode(({Given, When, Then}) => {
         nombre.click();
         nombre.keys(guid());
 
-        browser.pause(3000);
+        browser.pause(1000);
 
         apellido.click();
         apellido.keys(guid() + guid());
 
-        browser.pause(3000);
+        browser.pause(1000);
 
         correo.click();
         correo.keys(guid() + guid() + '@' + guid() + '.com');    
 
-        browser.pause(3000);
+        browser.pause(1000);
 
         passwordTmp.click();
         passwordTmp.keys(guid() + guid());
 
-        browser.pause(3000);
+        browser.pause(1000);
 
         terminosCondiciones.click();
 
-        browser.pause(3000);
+        browser.pause(1000);
   });
 
   Then('Succes info must be {string}', info => {
     browser.waitForVisible('.sweet-alert', 5000);
-    var alerta = browser.getText('.sweet-alert');
-    expect(alerta).contain(info);
+    var alerta = browser.getText('.sweet-alert').toString();
+    //se evalua si el registro es exitoso o si ocurre error por que el usuario ya existe
+    var contiene = alerta.includes(info) || alerta.includes ('error').toString();
+    expect(contiene).contain('true');
   });
 
 });

@@ -37,5 +37,5 @@ Scenario Outline: Register succes
     Then Succes info must be <info>
 
     Examples:
-      | name              |
+      | info              |
       | Registro exitoso! |
